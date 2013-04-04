@@ -24,7 +24,7 @@ Forum_Group::create()->save(array(
 // Create the General Discussion channel.
 $channel = Forum_Channel::create()->save(array(
 	"title" => "General Discussion",
-	"slug" => slug("General Discussion")
+	"slug" => Phpr_Inflector::slugify("General Discussion")
 ));
 
 $channel->setPermissions(array(
@@ -36,7 +36,7 @@ $channel->setPermissions(array(
 // Create the Staff Only channel.
 $channel = Forum_Channel::create()->save(array(
 	"title" => "Staff Only",
-	"slug" => slug("Staff Only")
+	"slug" => Phpr_Inflector::slugify("Staff Only")
 ));
 $channel->setPermissions(array(
 	1 => array("view" => true, "reply" => true, "start" => true, "moderate" => true)
