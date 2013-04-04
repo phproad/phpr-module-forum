@@ -65,7 +65,7 @@ $table = Db_Structure::table("forum_groups");
 
 // Member table.
 $table = Db_Structure::table("forum_members");
-	$table->primary_key("memberId", db_number);
+	$table->primary_key("member_id", db_number);
 	$table->column("username", db_varchar, 31)->index()->unique();
 	$table->column("email", db_varchar, 63)->index()->unique();
 	$table->column("account", "enum('administrator','member','suspended')")->default_value("member")->index();
@@ -109,7 +109,7 @@ $table = Db_Structure::table("forum_member_groups");
 
 // Member-user table.
 $table = Db_Structure::table("forum_member_members");
-	$table->primary_key("memberId1", "memberId2");
+	$table->primary_key("member_id1", "member_id2");
 	$table->save();
 
 // Post table.
@@ -130,7 +130,7 @@ $table = Db_Structure::table("forum_posts");
 	$table->save();
 
 // Search table.
-$table = Db_Structure::table("forum_searchs");
+$table = Db_Structure::table("forum_searches");
 	$table->column("type", "enum('conversations')", "conversations");
 	$table->column("ip", db_number);
 	$table->column("time", db_number);
