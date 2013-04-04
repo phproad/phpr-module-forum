@@ -97,7 +97,7 @@ $table = Db_Structure::table("forum_member_conversations");
 	$table->column("last_read", db_number);
 	$table->column("draft", "text");
 	$table->column("muted", db_bool);
-	$table->key('typeId', array("type", "id"));
+	$table->key('type_id', array("type", "id"));
 	$table->save();
 
 // Member-group table.
