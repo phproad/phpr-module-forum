@@ -1,7 +1,7 @@
 <?php
 
 // Activity table.
-$table = Db_Structure::table("activity");
+$table = Db_Structure::table("forum_activitys");
 	$table->primary_key("activityId", db_number);
 	$table->column("type", db_varchar, 255);
 	$table->column("memberId", db_number)->index();
@@ -14,7 +14,7 @@ $table = Db_Structure::table("activity");
 	$table->save();
 
 // Channel table.
-$table = Db_Structure::table("channel");
+$table = Db_Structure::table("forum_channels");
 	$table->primary_key("channelId");
 	$table->column("title", db_varchar, 31);
 	$table->column("slug", db_varchar, 31)->index()->unique();
@@ -29,7 +29,7 @@ $table = Db_Structure::table("channel");
 	$table->save();
 
 // Channel-group table.
-$table = Db_Structure::table("channel_group");
+$table = Db_Structure::table("forum_channel_groups");
 	$table->primary_keys("channelId", "groupId");
 	$table->column("channelId", db_number);
 	$table->column("groupId", db_number);
@@ -40,7 +40,7 @@ $table = Db_Structure::table("channel_group");
 	$table->save();
 
 // Conversation table.
-$table = Db_Structure::table("conversation");
+$table = Db_Structure::table("forum_conversations");
 	$table->primary_key("conversationId", db_number);
 	$table->column("title", db_varchar, 63);
 	$table->column("channelId", db_number)->index();
@@ -57,14 +57,14 @@ $table = Db_Structure::table("conversation");
 	$table->save();
 
 // Group table.
-$table = Db_Structure::table("group");
+$table = Db_Structure::table("forum_groups");
 	$table->primary_key("groupId", db_number);
 	$table->column("name", db_varchar, 31);
 	$table->column("canSuspend", db_bool);
 	$table->save();
 
 // Member table.
-$table = Db_Structure::table("member");
+$table = Db_Structure::table("forum_members");
 	$table->primary_key("memberId", db_number);
 	$table->column("username", db_varchar, 31)->index()->unique();
 	$table->column("email", db_varchar, 63)->index()->unique();
@@ -82,13 +82,13 @@ $table = Db_Structure::table("member");
 	$table->save();
 
 // Member-channel table.
-$table = Db_Structure::table("member_channel");
+$table = Db_Structure::table("forum_member_channels");
 	$table->primary_keys("memberId", "channelId");
 	$table->column("unsubscribed", db_bool);
 	$table->save();
 
 // Member-conversation table.
-$table = Db_Structure::table("member_conversation");
+$table = Db_Structure::table("forum_member_conversations");
 	$table->primary_key("conversationId", db_number);
 	$table->primary_key("type", "enum('member','group')", "member");
 	$table->primary_key("id", db_number);
@@ -101,19 +101,19 @@ $table = Db_Structure::table("member_conversation");
 	$table->save();
 
 // Member-group table.
-$table = Db_Structure::table("member_group");
+$table = Db_Structure::table("forum_member_groups");
 	$table->column("memberId", db_number);
 	$table->column("groupId", db_number);
 	$table->key(array("memberId", "groupId"), "primary");
 	$table->save();
 
 // Member-user table.
-$table = Db_Structure::table("member_member");
+$table = Db_Structure::table("forum_member_members");
 	$table->primary_key("memberId1", "memberId2");
 	$table->save();
 
 // Post table.
-$table = Db_Structure::table("post");
+$table = Db_Structure::table("forum_posts");
 	$table->primary_key("postId", db_number);
 	$table->column("conversationId", db_number);
 	$table->column("memberId", db_number)->index();
@@ -130,7 +130,7 @@ $table = Db_Structure::table("post");
 	$table->save();
 
 // Search table.
-$table = Db_Structure::table("search");
+$table = Db_Structure::table("forum_searchs");
 	$table->column("type", "enum('conversations')", "conversations");
 	$table->column("ip", db_number);
 	$table->column("time", db_number);
@@ -138,7 +138,7 @@ $table = Db_Structure::table("search");
 	$table->save();
 
 // Cookie table.
-$table = Db_Structure::table("cookie");
+$table = Db_Structure::table("forum_cookies");
 	$table->primary_key("memberId", db_number);
 	$table->primary_key("series", "char", 32);
 	$table->column("token", "char", 32);
