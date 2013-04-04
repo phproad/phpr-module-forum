@@ -10,11 +10,6 @@ $member = array(
 );
 Forum_Member::create()->save($member);
 
-// Set the session's userId and user information variables to the administrator, so that all entities
-// created below will be created by the administrator user.
-ET::$session->userId = 1;
-ET::$session->user = ET::memberModel()->getById(1);
-
 // Create the moderator group.
 Forum_Group::create()->save(array(
 	"name" => "Moderator",
