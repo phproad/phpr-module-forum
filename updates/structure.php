@@ -11,7 +11,6 @@ $table = Db_Structure::table("forum_activity");
 	$table->column("post_id", db_number)->index();
 	$table->column("time", db_datetime)->index();
 	$table->column("read", db_bool)->index();
-	$table->save();
 
 // Channel table.
 $table = Db_Structure::table("forum_channels");
@@ -26,7 +25,6 @@ $table = Db_Structure::table("forum_channels");
 	$table->column("count_conversations", db_number);
 	$table->column("count_posts", db_number);
 	$table->column("attributes", "mediumblob");
-	$table->save();
 
 // Channel-group table.
 $table = Db_Structure::table("forum_channel_groups");
@@ -37,7 +35,6 @@ $table = Db_Structure::table("forum_channel_groups");
 	$table->column("reply", db_bool);
 	$table->column("start", db_bool);
 	$table->column("moderate", db_bool);
-	$table->save();
 
 // Conversation table.
 $table = Db_Structure::table("forum_conversations");
@@ -54,14 +51,12 @@ $table = Db_Structure::table("forum_conversations");
 	$table->column("last_post_time", db_datetime)->index();
 	$table->column("attributes", "mediumblob");
 	$table->key("sticky_last_post", array("sticky", "lastPostTime"));
-	$table->save();
 
 // Group table.
 $table = Db_Structure::table("forum_groups");
 	$table->primary_key("group_id", db_number);
 	$table->column("name", db_varchar, 31);
 	$table->column("can_suspend", db_bool);
-	$table->save();
 
 // Member table.
 $table = Db_Structure::table("forum_members");
@@ -79,13 +74,11 @@ $table = Db_Structure::table("forum_members");
 	$table->column("preferences", "mediumblob");
 	$table->column("count_posts", db_number)->index();
 	$table->column("count_conversations", db_number);
-	$table->save();
 
 // Member-channel table.
 $table = Db_Structure::table("forum_member_channels");
 	$table->primary_keys("member_id", "channel_id");
 	$table->column("unsubscribed", db_bool);
-	$table->save();
 
 // Member-conversation table.
 $table = Db_Structure::table("forum_member_conversations");
@@ -98,19 +91,16 @@ $table = Db_Structure::table("forum_member_conversations");
 	$table->column("draft", "text");
 	$table->column("muted", db_bool);
 	$table->key('type_id', array("type", "id"));
-	$table->save();
 
 // Member-group table.
 $table = Db_Structure::table("forum_member_groups");
 	$table->column("member_id", db_number);
 	$table->column("group_id", db_number);
 	$table->key(array("member_id", "group_id"), "primary");
-	$table->save();
 
 // Member-user table.
 $table = Db_Structure::table("forum_member_members");
 	$table->primary_key("member_id1", "member_id2");
-	$table->save();
 
 // Post table.
 $table = Db_Structure::table("forum_posts");
@@ -127,7 +117,6 @@ $table = Db_Structure::table("forum_posts");
 	$table->column("attributes", "mediumblob");
 	$table->key("conversation_time", array("conversation_id", "time"));
 	$table->key("title_content", array("title", "content")); // @todo Fulltext
-	$table->save();
 
 // Search table.
 $table = Db_Structure::table("forum_searches");
@@ -135,11 +124,9 @@ $table = Db_Structure::table("forum_searches");
 	$table->column("ip", db_number);
 	$table->column("time", db_number);
 	$table->key('type_ip', array("type", "ip"));
-	$table->save();
 
 // Cookie table.
 $table = Db_Structure::table("forum_cookies");
 	$table->primary_key("member_id", db_number);
 	$table->primary_key("series", "char", 32);
 	$table->column("token", "char", 32);
-	$table->save();
